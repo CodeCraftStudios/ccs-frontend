@@ -1,0 +1,7 @@
+# By CodeCraft Studios
+
+User-agent: *
+Allow: *
+
+Sitemap: https://www.codecraftstudios.net/sitemap.xml
+

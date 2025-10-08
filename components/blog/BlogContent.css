@@ -1,0 +1,401 @@
+/* Blog Content Styles */
+
+.blog-content {
+  @apply w-full;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  @apply space-y-6;
+}
+
+/* Headings */
+.content-wrapper h1 {
+  @apply font-superfont text-4xl md:text-5xl font-bold text-white mb-6 mt-8;
+}
+
+.content-wrapper h2 {
+  @apply font-superfont text-3xl md:text-4xl font-bold text-white mb-5 mt-8;
+}
+
+.content-wrapper h3 {
+  @apply font-superfont text-2xl md:text-3xl font-bold text-white mb-4 mt-6;
+}
+
+.content-wrapper h4 {
+  @apply font-superfont text-xl md:text-2xl font-bold text-white mb-4 mt-6;
+}
+
+.content-wrapper h5 {
+  @apply font-superfont text-lg md:text-xl font-bold text-white mb-3 mt-4;
+}
+
+.content-wrapper h6 {
+  @apply font-superfont text-base md:text-lg font-bold text-white mb-3 mt-4;
+}
+
+/* Paragraphs */
+.content-wrapper p {
+  @apply text-muted-foreground leading-relaxed mb-6 text-base md:text-lg;
+}
+
+/* Links */
+.content-wrapper a {
+  @apply text-primary font-medium hover:text-primary/80 underline underline-offset-4 transition-colors duration-200;
+  @apply hover:decoration-primary/50;
+}
+
+.content-wrapper a:hover {
+  @apply decoration-2;
+}
+
+/* Buttons within content */
+.content-wrapper button,
+.content-wrapper .btn {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300;
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  @apply shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30;
+  @apply border border-primary/50;
+}
+
+.content-wrapper button:hover,
+.content-wrapper .btn:hover {
+  @apply scale-105 transform;
+}
+
+/* Secondary/outline buttons */
+.content-wrapper button.secondary,
+.content-wrapper .btn-secondary {
+  @apply bg-transparent text-primary border-primary/50;
+  @apply hover:bg-primary hover:text-primary-foreground;
+}
+
+/* Horizontal rules with purple gradient */
+.content-wrapper hr {
+  @apply my-10 h-[3px] border-0;
+  background: linear-gradient(90deg, transparent, rgb(var(--primary) / 0.8), transparent);
+  @apply relative;
+}
+
+.content-wrapper hr::before {
+  content: '';
+  @apply absolute inset-0 h-[3px];
+  background: linear-gradient(90deg, transparent, rgb(var(--primary) / 0.3), transparent);
+  filter: blur(8px);
+}
+
+/* Lists */
+.content-wrapper ul {
+  @apply list-disc list-inside text-muted-foreground mb-6 space-y-2 ml-4;
+}
+
+.content-wrapper ol {
+  @apply list-decimal list-inside text-muted-foreground mb-6 space-y-2 ml-4;
+}
+
+.content-wrapper li {
+  @apply text-muted-foreground leading-relaxed pl-2;
+}
+
+.content-wrapper li::marker {
+  @apply text-primary;
+}
+
+/* Nested lists */
+.content-wrapper ul ul,
+.content-wrapper ol ul,
+.content-wrapper ul ol,
+.content-wrapper ol ol {
+  @apply ml-8 mt-3 mb-3;
+}
+
+/* Blockquotes */
+.content-wrapper blockquote {
+  @apply border-l-4 border-primary pl-6 my-8 italic text-muted-foreground;
+  @apply bg-gradient-to-r from-primary/10 to-transparent py-4 pr-4 rounded-r-lg;
+  @apply relative;
+}
+
+.content-wrapper blockquote::before {
+  content: '"';
+  @apply absolute -left-3 -top-4 text-7xl text-primary/20 font-serif leading-none;
+}
+
+.content-wrapper blockquote p {
+  @apply mb-0 text-lg;
+}
+
+/* Tables */
+.content-wrapper table {
+  @apply w-full my-8 overflow-hidden rounded-lg;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.content-wrapper table thead {
+  @apply bg-gradient-to-r from-primary/10 to-primary/20;
+}
+
+.content-wrapper table thead th {
+  @apply px-4 py-3 text-left font-superfont text-white text-sm md:text-base font-semibold;
+  @apply border-b-2 border-primary/40;
+  @apply first:rounded-tl-lg last:rounded-tr-lg;
+}
+
+.content-wrapper table tbody td {
+  @apply px-4 py-3 text-muted-foreground;
+  @apply border-b border-border/30;
+  @apply text-sm md:text-base;
+}
+
+.content-wrapper table tbody tr {
+  @apply transition-all duration-200;
+  @apply hover:bg-primary/5;
+}
+
+.content-wrapper table tbody tr:last-child td {
+  @apply border-b-0;
+  @apply first:rounded-bl-lg last:rounded-br-lg;
+}
+
+/* Striped rows variant */
+.content-wrapper table tbody tr:nth-child(odd) {
+  @apply bg-card/30;
+}
+
+.content-wrapper table tbody tr:nth-child(even) {
+  @apply bg-transparent;
+}
+
+/* Code blocks */
+.content-wrapper code {
+  @apply bg-primary/10 text-primary px-2 py-1 rounded text-sm font-mono;
+  @apply border border-primary/20;
+}
+
+.content-wrapper pre {
+  @apply bg-card border border-border rounded-lg p-6 overflow-x-auto my-6;
+  @apply shadow-lg shadow-black/10;
+}
+
+.content-wrapper pre code {
+  @apply bg-transparent border-0 p-0 text-sm leading-relaxed block;
+  @apply text-foreground;
+}
+
+/* Custom scrollbar for code blocks */
+.content-wrapper pre::-webkit-scrollbar {
+  @apply h-3;
+}
+
+.content-wrapper pre::-webkit-scrollbar-track {
+  @apply bg-card rounded;
+}
+
+.content-wrapper pre::-webkit-scrollbar-thumb {
+  @apply bg-primary/40 rounded hover:bg-primary/60;
+  @apply transition-colors;
+}
+
+/* Images */
+.content-wrapper img {
+  @apply rounded-xl shadow-lg my-8 max-w-full h-auto;
+  @apply border border-border;
+  @apply transition-transform duration-300 hover:scale-[1.02];
+}
+
+/* Image with captions */
+.content-wrapper figure {
+  @apply my-8;
+}
+
+.content-wrapper figure img {
+  @apply mb-3;
+}
+
+.content-wrapper figcaption {
+  @apply text-sm text-muted-foreground text-center italic;
+}
+
+/* Strong/Bold text */
+.content-wrapper strong,
+.content-wrapper b {
+  @apply font-semibold text-foreground;
+}
+
+/* Emphasis/Italic text */
+.content-wrapper em,
+.content-wrapper i {
+  @apply italic;
+}
+
+/* Mark/Highlight */
+.content-wrapper mark {
+  @apply bg-primary/20 text-primary px-1 rounded;
+}
+
+/* Dividers with gradient */
+.content-wrapper .divider {
+  @apply my-10 h-px bg-gradient-to-r from-transparent via-primary to-transparent;
+}
+
+/* Callout boxes */
+.content-wrapper .callout,
+.content-wrapper .alert {
+  @apply p-6 rounded-xl border-l-4 my-8;
+  @apply bg-gradient-to-r to-transparent;
+}
+
+.content-wrapper .callout-info,
+.content-wrapper .alert-info {
+  @apply border-blue-500 from-blue-500/10;
+}
+
+.content-wrapper .callout-warning,
+.content-wrapper .alert-warning {
+  @apply border-yellow-500 from-yellow-500/10;
+}
+
+.content-wrapper .callout-danger,
+.content-wrapper .alert-danger {
+  @apply border-red-500 from-red-500/10;
+}
+
+.content-wrapper .callout-success,
+.content-wrapper .alert-success {
+  @apply border-green-500 from-green-500/10;
+}
+
+.content-wrapper .callout-primary,
+.content-wrapper .alert-primary {
+  @apply border-primary from-primary/10;
+}
+
+/* Badges/Pills within content */
+.content-wrapper .badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  @apply bg-primary/20 text-primary border border-primary/30;
+}
+
+/* Grid layouts for images/content */
+.content-wrapper .grid {
+  @apply grid gap-6 my-8;
+}
+
+.content-wrapper .grid-2 {
+  @apply grid-cols-1 md:grid-cols-2;
+}
+
+.content-wrapper .grid-3 {
+  @apply grid-cols-1 md:grid-cols-3;
+}
+
+.content-wrapper .grid-4 {
+  @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+}
+
+/* Cards within content */
+.content-wrapper .card {
+  @apply p-6 rounded-xl bg-card border border-border;
+  @apply transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10;
+}
+
+/* Gradient text */
+.content-wrapper .gradient-text {
+  @apply bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent;
+  @apply font-bold;
+}
+
+/* Abbreviations */
+.content-wrapper abbr {
+  @apply underline decoration-dotted decoration-primary/50 cursor-help;
+}
+
+/* Keyboard keys */
+.content-wrapper kbd {
+  @apply bg-card border border-border rounded px-2 py-1 text-sm font-mono;
+  @apply shadow-sm;
+}
+
+/* Superscript and Subscript */
+.content-wrapper sup {
+  @apply text-xs align-super text-primary;
+}
+
+.content-wrapper sub {
+  @apply text-xs align-sub text-primary;
+}
+
+/* Definition lists */
+.content-wrapper dl {
+  @apply my-6;
+}
+
+.content-wrapper dt {
+  @apply font-semibold text-foreground mt-4 mb-2;
+}
+
+.content-wrapper dd {
+  @apply text-muted-foreground ml-6 mb-2;
+}
+
+/* Task lists */
+.content-wrapper input[type="checkbox"] {
+  @apply mr-2 accent-primary;
+}
+
+/* Responsive video embeds */
+.content-wrapper .video-wrapper {
+  @apply relative w-full my-8;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.content-wrapper .video-wrapper iframe {
+  @apply absolute top-0 left-0 w-full h-full rounded-lg border border-border;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-wrapper > * {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.content-wrapper > *:nth-child(1) { animation-delay: 0.1s; }
+.content-wrapper > *:nth-child(2) { animation-delay: 0.15s; }
+.content-wrapper > *:nth-child(3) { animation-delay: 0.2s; }
+.content-wrapper > *:nth-child(4) { animation-delay: 0.25s; }
+.content-wrapper > *:nth-child(5) { animation-delay: 0.3s; }
+.content-wrapper > *:nth-child(6) { animation-delay: 0.35s; }
+.content-wrapper > *:nth-child(7) { animation-delay: 0.4s; }
+.content-wrapper > *:nth-child(8) { animation-delay: 0.45s; }
+
+/* Print styles */
+@media print {
+  .content-wrapper {
+    @apply text-black;
+  }
+
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4,
+  .content-wrapper h5,
+  .content-wrapper h6 {
+    @apply text-black;
+  }
+
+  .content-wrapper a {
+    @apply text-blue-600 underline;
+  }
+}

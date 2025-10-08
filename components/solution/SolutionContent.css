@@ -1,0 +1,193 @@
+/* Solution Content Styles */
+
+.solution-content {
+  @apply w-full;
+}
+
+/* Solution content container */
+.solution-wrapper {
+  @apply space-y-6;
+}
+
+/* Buttons within solution */
+.solution-wrapper button,
+.solution-wrapper .btn {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300;
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  @apply shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30;
+  @apply border border-primary/50;
+}
+
+.solution-wrapper button:hover,
+.solution-wrapper .btn:hover {
+  @apply scale-105 transform;
+}
+
+/* Secondary/outline buttons */
+.solution-wrapper button.secondary,
+.solution-wrapper .btn-secondary {
+  @apply bg-transparent text-primary border-primary/50;
+  @apply hover:bg-primary hover:text-primary-foreground;
+}
+
+/* Horizontal rules with purple gradient */
+.solution-wrapper hr {
+  @apply my-8 h-[2px] border-0 bg-gradient-to-r from-transparent via-primary to-transparent;
+  @apply opacity-50;
+}
+
+/* Add glow effect to hr */
+.solution-wrapper hr::before {
+  content: '';
+  @apply absolute left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0;
+  filter: blur(4px);
+  transform: translateY(-50%);
+}
+
+/* Tables */
+.solution-wrapper table {
+  @apply w-full border-collapse my-6 overflow-hidden rounded-lg;
+}
+
+.solution-wrapper table thead {
+  @apply bg-primary/10 border-b border-primary/30;
+}
+
+.solution-wrapper table th {
+  @apply px-6 py-3 text-left text-sm font-superfont text-white;
+}
+
+.solution-wrapper table td {
+  @apply px-6 py-4 border-b border-border text-muted-foreground;
+}
+
+.solution-wrapper table tr:hover {
+  @apply bg-primary/5 transition-colors;
+}
+
+/* Images within overview */
+.solution-wrapper img {
+  @apply rounded-lg shadow-lg my-6 max-w-full h-auto;
+  @apply border border-border;
+}
+
+/* Highlight boxes / callouts */
+.solution-wrapper .callout,
+.solution-wrapper .highlight {
+  @apply p-6 rounded-lg border-l-4 border-primary my-6;
+  @apply bg-gradient-to-r from-primary/10 to-transparent;
+}
+
+.solution-wrapper .callout-info {
+  @apply border-blue-500 bg-gradient-to-r from-blue-500/10 to-transparent;
+}
+
+.solution-wrapper .callout-warning {
+  @apply border-yellow-500 bg-gradient-to-r from-yellow-500/10 to-transparent;
+}
+
+.solution-wrapper .callout-danger {
+  @apply border-red-500 bg-gradient-to-r from-red-500/10 to-transparent;
+}
+
+.solution-wrapper .callout-success {
+  @apply border-green-500 bg-gradient-to-r from-green-500/10 to-transparent;
+}
+
+/* Enhanced blockquotes */
+.solution-wrapper blockquote {
+  @apply relative my-6 pl-6;
+}
+
+.solution-wrapper blockquote::before {
+  content: '"';
+  @apply absolute -left-2 -top-4 text-6xl text-primary/20 font-serif;
+}
+
+/* Code blocks enhancement */
+.solution-wrapper pre {
+  @apply relative;
+}
+
+.solution-wrapper pre code {
+  @apply block text-sm leading-relaxed;
+}
+
+/* Nested lists spacing */
+.solution-wrapper ul ul,
+.solution-wrapper ol ul,
+.solution-wrapper ul ol,
+.solution-wrapper ol ol {
+  @apply ml-6 mt-2;
+}
+
+/* Add custom scrollbar for code blocks */
+.solution-wrapper pre::-webkit-scrollbar {
+  @apply h-2;
+}
+
+.solution-wrapper pre::-webkit-scrollbar-track {
+  @apply bg-card rounded;
+}
+
+.solution-wrapper pre::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded hover:bg-primary/50;
+}
+
+/* Dividers with gradient */
+.solution-wrapper .divider {
+  @apply my-8 h-px bg-gradient-to-r from-transparent via-primary to-transparent;
+}
+
+/* Badges/pills within content */
+.solution-wrapper .badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  @apply bg-primary/20 text-primary border border-primary/30;
+}
+
+/* Grid layouts for images/content */
+.solution-wrapper .grid {
+  @apply grid gap-4 my-6;
+}
+
+.solution-wrapper .grid-2 {
+  @apply grid-cols-1 md:grid-cols-2;
+}
+
+.solution-wrapper .grid-3 {
+  @apply grid-cols-1 md:grid-cols-3;
+}
+
+/* Cards within overview */
+.solution-wrapper .card {
+  @apply p-6 rounded-xl bg-card border border-border;
+  @apply transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10;
+}
+
+/* Gradient text */
+.solution-wrapper .gradient-text {
+  @apply bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.solution-wrapper > * {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.solution-wrapper > *:nth-child(1) { animation-delay: 0.1s; }
+.solution-wrapper > *:nth-child(2) { animation-delay: 0.2s; }
+.solution-wrapper > *:nth-child(3) { animation-delay: 0.3s; }
+.solution-wrapper > *:nth-child(4) { animation-delay: 0.4s; }
+.solution-wrapper > *:nth-child(5) { animation-delay: 0.5s; }
