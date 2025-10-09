@@ -25,7 +25,7 @@ export const twittweLink = "https://x.com/CodeCraft_Us"
 export let FRONTEND = ""
 export let SERVER_ENDPOINT = ""
 
-const DEV:any = true;
+const DEV:any = false;
 
 
 if (DEV == true){
