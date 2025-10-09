@@ -219,26 +219,7 @@ async function FooterSSR() {
             <p className="text-muted-foreground text-sm mb-4 md:mb-0">
               &copy; {new Date().getFullYear()} {NAME} LLC. All rights reserved.
             </p>
-            <nav aria-label="Legal navigation" className="flex space-x-6 text-sm">
-              <a
-                href="/privacy"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="/cookies"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Cookie Policy
-              </a>
-            </nav>
+            
           </div>
         </div>
       </footer>

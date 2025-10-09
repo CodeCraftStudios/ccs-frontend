@@ -165,6 +165,9 @@ async function NavbarSSR() {
         }}
       />
 
+      {/* Mobile Menu Toggle Checkbox - CSS Only */}
+      <input type="checkbox" id="mobile-menu-toggle" className="hidden peer" />
+
       {/* SSR Navigation Structure */}
       <nav
         className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border"
@@ -240,20 +243,67 @@ async function NavbarSSR() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden flex items-center">
-              <button
-                className="p-2"
-                aria-label="Toggle mobile menu"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-              >
-                <Menu className="w-6 h-6 text-foreground" />
-              </button>
-            </div>
+            {/* Mobile Menu Toggle Button - CSS Only */}
+            <label
+              htmlFor="mobile-menu-toggle"
+              className="lg:hidden ml-auto p-2 cursor-pointer flex items-center"
+              aria-label="Toggle mobile menu"
+            >
+              <Menu className="w-6 h-6 text-foreground" />
+            </label>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu - Hidden by default, shown when checkbox is checked */}
+      <div className="peer-checked:block hidden lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-background/95 backdrop-blur-sm border-t border-border overflow-y-auto z-40">
+        <div className="px-4 py-4 space-y-2">
+          {navItems.map((item) => (
+            item.dropdown ? (
+              <details key={item.name} className="border-b border-border pb-2">
+                <summary className="flex items-center justify-between w-full py-2 cursor-pointer text-foreground hover:text-primary transition-colors font-medium list-none">
+                  <span>{item.name}</span>
+                  <ChevronDown className="w-5 h-5" />
+                </summary>
+                <div className="pl-4 mt-2 space-y-2">
+                  {item.dropdown.map((dropdownItem) => (
+                    <Link
+                      key={dropdownItem.name}
+                      href={dropdownItem.href}
+                      className="flex items-center py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {dropdownItem.logo && (
+                        <img
+                          src={dropdownItem.logo}
+                          alt={`${dropdownItem.name} logo`}
+                          className="mr-3 w-5 h-5 object-contain"
+                        />
+                      )}
+                      {dropdownItem.name}
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <div key={item.name} className="border-b border-border pb-2">
+                <Link
+                  href={item.href || "#"}
+                  className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                >
+                  {item.name}
+                </Link>
+              </div>
+            )
+          ))}
+
+          {/* Contact Button in Mobile Menu */}
+          <div className="pt-4">
+            <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
 
     </>
   );
