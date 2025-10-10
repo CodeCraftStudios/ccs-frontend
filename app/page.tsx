@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: NAME,
     images: [
       {
-        url: `${FRONTEND}/banner.png`,
+        url: `${FRONTEND}/banner.webp`,
         width: 1920,
         height: 1080,
         alt: "CodeCraft Studios - IT & Digital Marketing Solutions in Miami, Florida",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CodeCraft Studios - Premier IT & Digital Marketing Agency",
     description: `${EXPERIENCE}+ years of excellence in web development, mobile apps, and digital marketing. Miami-based, Florida-serving.`,
-    images: [`${FRONTEND}/banner.png`],
+    images: [`${FRONTEND}/banner.webp`],
     creator: "@codecraft_studios",
   },
   alternates: {

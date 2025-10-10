@@ -117,7 +117,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const title = post.seo_title || `${post.title} | Blog | ${NAME}`
   const description = post.seo_description || post.context || `Read ${post.title} by ${post.author}`
-  const imageUrl = post.image ? `${SERVER_ENDPOINT}${post.image}` : `${FRONTEND}/banner.png`
+  const imageUrl = post.image ? `${SERVER_ENDPOINT}${post.image}` : `${FRONTEND}/banner.webp`
   const keywords = post.seo_keywords
     ? post.seo_keywords.split(',').map(k => k.trim())
     : [post.title, post.category?.name || '', 'blog', NAME]

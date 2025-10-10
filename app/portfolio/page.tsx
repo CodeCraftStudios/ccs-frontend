@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: NAME,
     images: [
       {
-        url: `${FRONTEND}/banner.png`,
+        url: `${FRONTEND}/banner.webp`,
         width: 1920,
         height: 1080,
         alt: `${NAME} Portfolio - Successful Projects and Case Studies`,
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Portfolio - Our Best Work | ${NAME}`,
     description: `Explore our portfolio showcasing successful projects in web development, mobile apps, and digital marketing.`,
-    images: [`${FRONTEND}/banner.png`],
+    images: [`${FRONTEND}/banner.webp`],
     creator: "@codecraft_studios",
   },
   alternates: {

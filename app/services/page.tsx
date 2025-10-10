@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "CodeCraft Studios",
     images: [
       {
-        url: `${FRONTEND}/banner.png`,
+        url: `${FRONTEND}/banner.webp`,
         width: 1920,
         height: 1080,
         alt: "CodeCraft Studios IT Services - Web Development, Apps, Digital Marketing",

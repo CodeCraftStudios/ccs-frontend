@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: NAME,
     images: [
       {
-        url: `${FRONTEND}/banner.png`,
+        url: `${FRONTEND}/banner.webp`,
         width: 1920,
         height: 1080,
         alt: `${NAME} Strategic Partners and Collaborations`,
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Strategic Partners & Collaborations | ${NAME}`,
     description: `Discover our network of trusted partners and strategic collaborations that deliver comprehensive business solutions.`,
-    images: [`${FRONTEND}/banner.png`],
+    images: [`${FRONTEND}/banner.webp`],
     creator: "@codecraft_studios",
   },
   alternates: {

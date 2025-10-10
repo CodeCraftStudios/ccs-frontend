@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: NAME,
     images: [
       {
-        url: `${FRONTEND}/banner.png`,
+        url: `${FRONTEND}/banner.webp`,
         width: 1920,
         height: 1080,
         alt: "CodeCraft Studios - IT & Marketing Solutions",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CodeCraft Studios - IT & Marketing Solutions",
     description: "Professional IT and marketing agency delivering innovative digital solutions for growing businesses.",
-    images: [`${FRONTEND}/banner.png`],
+    images: [`${FRONTEND}/banner.webp`],
     creator: "@codecraft_studios",
   },
   alternates: {

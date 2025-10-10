@@ -64,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: NAME,
       images: [
         {
-          url: `${FRONTEND}/banner.png`,
+          url: `${FRONTEND}/banner.webp`,
           width: 1920,
           height: 1080,
           alt: `${service.name} by ${NAME} - Miami IT Solutions`,
@@ -77,7 +77,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [`${FRONTEND}/banner.png`],
+      images: [`${FRONTEND}/banner.webp`],
       creator: "@codecraft_studios",
     },
     alternates: {
