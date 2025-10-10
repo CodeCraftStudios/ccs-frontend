@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
         siteName: NAME,
         images: [
           {
-            url: partner?.logo ? `${SERVER_ENDPOINT}${partner.logo}` : `${FRONTEND}/media/banner.jpg`,
+            url: partner?.logo ? `${SERVER_ENDPOINT}${partner.logo}` : `${FRONTEND}/banner.png`,
             width: 1920,
             height: 1080,
             alt: `${partner?.name || "RSquare Games"} partnership with ${NAME}`,
@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
         card: "summary_large_image",
         title,
         description,
-        images: [partner?.logo ? `${SERVER_ENDPOINT}${partner.logo}` : `${FRONTEND}/media/banner.jpg`],
+        images: [partner?.logo ? `${SERVER_ENDPOINT}${partner.logo}` : `${FRONTEND}/banner.png`],
         creator: "@codecraft_studios",
       },
       alternates: {

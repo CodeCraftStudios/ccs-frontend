@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     ? `${SERVER_ENDPOINT}${project.cover}`
     : project.image
     ? `${SERVER_ENDPOINT}${project.image}`
-    : `${FRONTEND}/media/banner.jpg`
+    : `${FRONTEND}/banner.png`
   const keywords = project.seo_keywords
     ? project.seo_keywords.split(',').map(k => k.trim())
     : [project.name, project.category || '', 'portfolio', 'case study', NAME]

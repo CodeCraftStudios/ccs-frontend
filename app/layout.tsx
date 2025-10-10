@@ -10,6 +10,7 @@ import FooterSSR from "@/components/footer-ssr"
 import "./globals.css"
 import CSRFInitializer from "@/components/utils/CSRFInitializer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { NAME, FRONTEND, KEYWORDS } from "@/lib/consts"
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -18,9 +19,55 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "CodeCraft Studios - IT & Marketing Solutions",
-  description: "Professional IT and marketing agency delivering innovative digital solutions for growing businesses.",
-  generator: "v0.app",
+  title: {
+    default: "CodeCraft Studios - IT & Marketing Solutions | Miami, FL",
+    template: "%s | CodeCraft Studios",
+  },
+  description: "Professional IT and marketing agency delivering innovative digital solutions for growing businesses. Web development, mobile apps, digital marketing, and more in Miami, Florida.",
+  keywords: KEYWORDS,
+  authors: [{ name: NAME, url: FRONTEND }],
+  creator: NAME,
+  publisher: NAME,
+  generator: NAME,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "CodeCraft Studios - IT & Marketing Solutions",
+    description: "Professional IT and marketing agency delivering innovative digital solutions for growing businesses.",
+    url: FRONTEND,
+    siteName: NAME,
+    images: [
+      {
+        url: `${FRONTEND}/banner.png`,
+        width: 1920,
+        height: 1080,
+        alt: "CodeCraft Studios - IT & Marketing Solutions",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CodeCraft Studios - IT & Marketing Solutions",
+    description: "Professional IT and marketing agency delivering innovative digital solutions for growing businesses.",
+    images: [`${FRONTEND}/banner.png`],
+    creator: "@codecraft_studios",
+  },
+  alternates: {
+    canonical: FRONTEND,
+  },
+  category: "Technology",
+  metadataBase: new URL(FRONTEND),
 }
 
 export default function RootLayout({

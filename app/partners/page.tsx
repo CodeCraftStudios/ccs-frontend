@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: NAME,
     images: [
       {
-        url: `${FRONTEND}/media/banner.jpg`,
+        url: `${FRONTEND}/banner.png`,
         width: 1920,
         height: 1080,
         alt: `${NAME} Strategic Partners and Collaborations`,
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Strategic Partners & Collaborations | ${NAME}`,
     description: `Discover our network of trusted partners and strategic collaborations that deliver comprehensive business solutions.`,
-    images: [`${FRONTEND}/media/banner.jpg`],
+    images: [`${FRONTEND}/banner.png`],
     creator: "@codecraft_studios",
   },
   alternates: {
@@ -163,26 +163,7 @@ export default async function PartnersPage() {
       },
     ]
 
-    const partnershipTypes = [
-      {
-        icon: <Building2 className="w-12 h-12" />,
-        title: "Technology Partners",
-        description: "Leading technology companies and platforms that enhance our service capabilities",
-        count: partners.filter((p: any) => p.partnership_type === 'technology').length,
-      },
-      {
-        icon: <Users className="w-12 h-12" />,
-        title: "Service Partners",
-        description: "Specialized service providers that complement our core offerings",
-        count: partners.filter((p: any) => p.partnership_type === 'service').length,
-      },
-      {
-        icon: <Globe className="w-12 h-12" />,
-        title: "Strategic Alliances",
-        description: "Long-term partnerships focused on mutual growth and market expansion",
-        count: partners.filter((p: any) => p.partnership_type === 'strategic').length,
-      },
-    ]
+
 
     const stats = [
       { number: partners.length.toString(), label: "Active Partners" },
@@ -257,18 +238,7 @@ export default async function PartnersPage() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                {partnershipTypes.map((type, index) => (
-                  <Card key={index} className="h-full bg-card/50 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 text-center">
-                    <CardContent className="p-8">
-                      <div className="text-primary mb-6 flex justify-center">{type.icon}</div>
-                      <h3 className="superfont text-2xl font-bold mb-4">{type.title}</h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">{type.description}</p>
-                      <div className="text-3xl font-bold text-primary">{type.count}+ Partners</div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+             
             </div>
           </section>
 
