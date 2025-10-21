@@ -16,6 +16,143 @@ export interface ProcessedBlogContent {
 }
 
 /**
+ * Clean up list items by removing nested paragraphs and reorganizing citation links
+ */
+function cleanupListItems(content: string): string {
+  // Process each list item
+  return content.replace(
+    /<li[^>]*>([\s\S]*?)<\/li>/gi,
+    (match, innerContent) => {
+      let cleaned = innerContent
+
+      // Extract all citation links
+      const citations: string[] = []
+      cleaned = cleaned.replace(
+        /<span[^>]*data-testid="webpage-citation-pill"[^>]*>[\s\S]*?<\/span><\/span>/gi,
+        (citationMatch) => {
+          // Extract the readable citation text (e.g., "Tom's Guide +1")
+          const textMatch = citationMatch.match(/text-center">(.*?)<\/span>/)
+          if (textMatch) {
+            citations.push(textMatch[1])
+          }
+          return '' // Remove from inline position
+        }
+      )
+
+      // Remove nested <p> tags but keep their content
+      cleaned = cleaned.replace(/<p[^>]*>/gi, '')
+      cleaned = cleaned.replace(/<\/p>/gi, '')
+
+      // Clean up multiple spaces and line breaks
+      cleaned = cleaned.replace(/\s+/g, ' ').trim()
+
+      // Add citations at the end in a cleaner format
+      if (citations.length > 0) {
+        const uniqueCitations = [...new Set(citations)]
+        cleaned += ` [${uniqueCitations.join(', ')}]`
+      }
+
+      // Extract the original class from the li tag
+      const classMatch = match.match(/class="([^"]*)"/)
+      const liClass = classMatch ? classMatch[1] : 'text-muted-foreground'
+
+      return `<li class="${liClass}">${cleaned}</li>`
+    }
+  )
+}
+
+/**
+ * Add Tailwind classes to tables and their elements for proper styling
+ */
+function addTableClasses(content: string): string {
+  let processed = content
+
+  // Add wrapper div for mobile scroll and add classes to table
+  processed = processed.replace(
+    /<table([^>]*)>([\s\S]*?)<\/table>/gi,
+    (match, attrs, tableContent) => {
+      // Table classes with rounded corners and purple border
+      const tableClasses = 'w-full my-8 rounded-xl border-2 border-primary/30 bg-card/30 overflow-hidden'
+
+      // Check if table has existing classes
+      const existingClassMatch = attrs.match(/class="([^"]*)"/)
+      let newAttrs = attrs
+
+      if (existingClassMatch) {
+        newAttrs = attrs.replace(/class="([^"]*)"/, `class="${existingClassMatch[1]} ${tableClasses}"`)
+      } else {
+        newAttrs = `${attrs} class="${tableClasses}"`
+      }
+
+      // Wrap in scrollable div for mobile with rounded corners
+      return `<div class="overflow-x-auto -webkit-overflow-scrolling-touch my-8 rounded-xl"><table${newAttrs}>${tableContent}</table></div>`
+    }
+  )
+
+  // Add classes to thead
+  processed = processed.replace(
+    /<thead([^>]*)>/gi,
+    (match, attrs) => {
+      const classes = 'bg-gradient-to-r from-primary/20 to-primary/10'
+      if (attrs.includes('class=')) {
+        return match.replace(/class="([^"]*)"/, `class="$1 ${classes}"`)
+      }
+      return `<thead class="${classes}">`
+    }
+  )
+
+  // Add classes to th with stronger borders
+  processed = processed.replace(
+    /<th([^>]*)>/gi,
+    (match, attrs) => {
+      const classes = 'px-4 py-3 text-left font-semibold text-white text-sm md:text-base border-b-2 border-primary/60 border-r border-border last:border-r-0 whitespace-nowrap'
+      if (attrs.includes('class=')) {
+        return match.replace(/class="([^"]*)"/, `class="$1 ${classes}"`)
+      }
+      return `<th class="${classes}">`
+    }
+  )
+
+  // Add classes to tbody
+  processed = processed.replace(
+    /<tbody([^>]*)>/gi,
+    (match, attrs) => {
+      const classes = ''
+      if (attrs.includes('class=')) {
+        return match.replace(/class="([^"]*)"/, `class="$1 ${classes}"`)
+      }
+      return `<tbody class="${classes}">`
+    }
+  )
+
+  // Add classes to tr
+  processed = processed.replace(
+    /<tr([^>]*)>/gi,
+    (match, attrs) => {
+      const classes = 'transition-all duration-200 hover:bg-primary/5 odd:bg-card/30 even:bg-transparent'
+      if (attrs.includes('class=')) {
+        return match.replace(/class="([^"]*)"/, `class="$1 ${classes}"`)
+      }
+      return `<tr class="${classes}">`
+    }
+  )
+
+  // Add classes to td with stronger borders
+  processed = processed.replace(
+    /<td([^>]*)>/gi,
+    (match, attrs) => {
+      const classes = 'px-4 py-3 text-muted-foreground text-sm md:text-base border-b border-border/50 border-r border-border/40 last:border-r-0'
+      if (attrs.includes('class=')) {
+        return match.replace(/class="([^"]*)"/, `class="$1 ${classes}"`)
+      }
+      return `<td class="${classes}">`
+    }
+  )
+
+  return processed
+}
+
+/**
  * Process HTML content for server-side rendering
  * Adds proper classes, fixes image URLs, and optimizes for SEO
  */
@@ -24,6 +161,12 @@ export function processBlogContentForSSR(content: string): string {
 
   try {
     let processedContent = content
+
+    // Clean up list items first
+    processedContent = cleanupListItems(processedContent)
+
+    // Add Tailwind classes to tables
+    processedContent = addTableClasses(processedContent)
 
     // Fix image URLs - handle both relative paths and malformed relative paths
     processedContent = processedContent.replace(

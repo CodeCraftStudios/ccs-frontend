@@ -86,11 +86,11 @@
 
 /* Lists */
 .content-wrapper ul {
-  @apply list-disc list-inside text-muted-foreground mb-6 space-y-2 ml-4;
+  @apply list-disc list-outside text-muted-foreground mb-6 space-y-2 ml-6;
 }
 
 .content-wrapper ol {
-  @apply list-decimal list-inside text-muted-foreground mb-6 space-y-2 ml-4;
+  @apply list-decimal list-outside text-muted-foreground mb-6 space-y-2 ml-6;
 }
 
 .content-wrapper li {
@@ -125,27 +125,57 @@
   @apply mb-0 text-lg;
 }
 
-/* Tables */
+/* Tables - Mobile responsive wrapper */
 .content-wrapper table {
-  @apply w-full my-8 overflow-hidden rounded-lg;
+  @apply w-full my-8 rounded-lg border border-border/50;
   border-collapse: separate;
   border-spacing: 0;
+  display: table;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Make tables scrollable on mobile */
+.content-wrapper > table,
+.content-wrapper p > table,
+.content-wrapper div > table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper > table,
+  .content-wrapper p > table,
+  .content-wrapper div > table {
+    display: table;
+    white-space: normal;
+  }
 }
 
 .content-wrapper table thead {
-  @apply bg-gradient-to-r from-primary/10 to-primary/20;
+  @apply bg-gradient-to-r from-primary/20 to-primary/10;
 }
 
 .content-wrapper table thead th {
   @apply px-4 py-3 text-left font-superfont text-white text-sm md:text-base font-semibold;
-  @apply border-b-2 border-primary/40;
+  @apply border-b-2 border-primary/50 border-r border-border/30;
   @apply first:rounded-tl-lg last:rounded-tr-lg;
+  white-space: nowrap;
+}
+
+.content-wrapper table thead th:last-child {
+  @apply border-r-0;
 }
 
 .content-wrapper table tbody td {
   @apply px-4 py-3 text-muted-foreground;
-  @apply border-b border-border/30;
+  @apply border-b border-border/30 border-r border-border/20;
   @apply text-sm md:text-base;
+}
+
+.content-wrapper table tbody td:last-child {
+  @apply border-r-0;
 }
 
 .content-wrapper table tbody tr {
@@ -165,6 +195,20 @@
 
 .content-wrapper table tbody tr:nth-child(even) {
   @apply bg-transparent;
+}
+
+/* Custom scrollbar for tables on mobile */
+.content-wrapper table::-webkit-scrollbar {
+  @apply h-2;
+}
+
+.content-wrapper table::-webkit-scrollbar-track {
+  @apply bg-card/50 rounded;
+}
+
+.content-wrapper table::-webkit-scrollbar-thumb {
+  @apply bg-primary/40 rounded hover:bg-primary/60;
+  @apply transition-colors;
 }
 
 /* Code blocks */

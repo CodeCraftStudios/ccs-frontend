@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Share2, Twitter, Check, Link as LinkIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -12,6 +12,12 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ title, url, description }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false)
+  const [canShare, setCanShare] = useState(false)
+
+  useEffect(() => {
+    // Check if native share is available only on client
+    setCanShare(typeof navigator !== 'undefined' && !!navigator.share)
+  }, [])
 
   const shareOnTwitter = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
@@ -81,7 +87,7 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       </Button>
 
       {/* Native Share Button (mobile) */}
-      {typeof navigator !== 'undefined' && navigator.share && (
+      {canShare && (
         <Button
           size="sm"
           variant="outline"
