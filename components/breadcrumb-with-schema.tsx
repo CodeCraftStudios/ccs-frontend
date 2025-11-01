@@ -1,3 +1,4 @@
+import React from "react"
 import Link from "next/link"
 import {
   Breadcrumb,
@@ -47,8 +48,8 @@ export function BreadcrumbWithSchema({ items, className = "" }: BreadcrumbWithSc
       <Breadcrumb className={className}>
         <BreadcrumbList>
           {items.map((item, index) => (
-            <>
-              <BreadcrumbItem key={index}>
+            <React.Fragment key={index}>
+              <BreadcrumbItem>
                 {item.current ? (
                   <BreadcrumbPage>{item.label}</BreadcrumbPage>
                 ) : item.href ? (
@@ -60,7 +61,7 @@ export function BreadcrumbWithSchema({ items, className = "" }: BreadcrumbWithSc
                 )}
               </BreadcrumbItem>
               {index < items.length - 1 && <BreadcrumbSeparator />}
-            </>
+            </React.Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>

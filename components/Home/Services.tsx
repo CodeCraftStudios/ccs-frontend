@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react'
 import { Card, CardHeader, CardContent, CardTitle } from '../ui/card'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, CheckCircle, ChevronDown } from 'lucide-react'
 import { SERVER_ENDPOINT } from '@/lib/consts'
 import Link from 'next/link'
 
@@ -39,6 +38,7 @@ interface ServicesProps {
 
 const Services = ({ services }: ServicesProps) => {
   const [selectedService, setSelectedService] = useState(0)
+  const [expandedMobile, setExpandedMobile] = useState<number | null>(null)
   
   return (
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 relative overflow-hidden">
@@ -62,32 +62,112 @@ const Services = ({ services }: ServicesProps) => {
           <p className="text-xl text-muted-foreground">What We Provide</p>
         </div>
 
-        <div className="md:hidden mb-8">
-          <Select
-            value={selectedService.toString()}
-            onValueChange={(value) => setSelectedService(Number.parseInt(value))}
-          >
-            <SelectTrigger className="w-full border-primary/30 focus:border-primary">
-              <SelectValue placeholder="Select a service" />
-            </SelectTrigger>
-            <SelectContent>
-              {services.map((service, index) => (
-                <SelectItem key={service.id} value={index.toString()}>
-                  <div className="flex items-center space-x-2">
-                    <img 
-                      src={`${SERVER_ENDPOINT}${service.icon}`} 
-                      alt={service.name}
-                      className="w-5 h-5 object-contain"
-                      style={{
-                        filter: 'brightness(0) saturate(100%) invert(39%) sepia(93%) saturate(2306%) hue-rotate(251deg) brightness(98%) contrast(91%)'
-                      }}
-                    />
-                    <span>{service.name}</span>
+        {/* Mobile Accordion */}
+        <div className="md:hidden space-y-4 mb-8">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              className="relative rounded-2xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 overflow-hidden"
+            >
+              {/* Header - Clickable */}
+              <div
+                className="p-6 cursor-pointer"
+                onClick={() => setExpandedMobile(expandedMobile === index ? null : index)}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative w-12 aspect-square rounded-xl  flex items-center justify-center">
+                      <img
+                        src={`${SERVER_ENDPOINT}${service.icon}`}
+                        alt={service.name}
+                        className="w-max aspect-square object-contain"
+                        style={{
+                          filter: 'brightness(0) saturate(100%) invert(39%) sepia(93%) saturate(2306%) hue-rotate(251deg) brightness(98%) contrast(91%)'
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-foreground">{service.name}</h4>
+                      <p className="text-muted-foreground text-sm mt-1">{service.short_description}</p>
+                    </div>
                   </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+                  <div className="text-primary">
+                    <ChevronDown
+                      className={`w-6 h-6 transition-transform duration-300 ${
+                        expandedMobile === index ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Expandable Content */}
+              <div
+                className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                  expandedMobile === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="px-6 pb-6 border-t border-primary/20">
+                  <div className="mt-6 space-y-6">
+                    {/* Overview */}
+                    <div>
+                      <h4 className="font-semibold mb-2 text-glow-blue">Overview</h4>
+                      <p className="text-muted-foreground leading-relaxed">{service.overview}</p>
+                    </div>
+
+                    {/* Key Features */}
+                    {service.features.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-3 text-glow-green">Key Features</h4>
+                        <ul className="space-y-2">
+                          {service.features.map((feature) => (
+                            <li
+                              key={feature.id}
+                              className="flex items-center space-x-3"
+                            >
+                              <CheckCircle className="w-4 h-4 text-accent-green flex-shrink-0" />
+                              <span className="text-sm">{feature.feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Technologies */}
+                    {service.stack.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-3">Technologies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {service.stack.map((tech) => (
+                            <Badge
+                              key={tech.id}
+                              variant="secondary"
+                              className="bg-primary/30 text-primary-foreground border-primary/50 flex items-center gap-2"
+                            >
+                              <img
+                                src={`${SERVER_ENDPOINT}${tech.logo}`}
+                                alt={tech.name}
+                                className="w-4 h-4 object-contain"
+                              />
+                              {tech.name}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CTA Button */}
+                    <Link href={`/service/${service.slug}`}>
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group btn-glow magnetic-hover">
+                        Get Started with {service.name}
+                        <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
