@@ -19,7 +19,7 @@ export const KEYWORDS = [
 
 
 export const linkedinLink = "https://www.linkedin.com/company/107904922"
-export const instagramLink = "https://www.instagram.com/codecraft.studios"
+export const instagramLink = "https://www.instagram.com/codecraft___studios"
 export const twittweLink = "https://x.com/CodeCraft_Us" 
 
 export let FRONTEND = ""

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Menu, X } from "lucide-react"
 import Link from "next/link"
+import { MobileNavLink } from "@/components/mobile-nav-link"
 import { NAME, FRONTEND, SERVER_ENDPOINT } from "@/lib/consts"
 import { Service, fetchServices } from "@/lib/services"
 import { getData } from "@/lib/axios"
@@ -267,7 +268,7 @@ async function NavbarSSR() {
                 </summary>
                 <div className="pl-4 mt-2 space-y-2">
                   {item.dropdown.map((dropdownItem) => (
-                    <Link
+                    <MobileNavLink
                       key={dropdownItem.name}
                       href={dropdownItem.href}
                       className="flex items-center py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -280,18 +281,18 @@ async function NavbarSSR() {
                         />
                       )}
                       {dropdownItem.name}
-                    </Link>
+                    </MobileNavLink>
                   ))}
                 </div>
               </details>
             ) : (
               <div key={item.name} className="border-b border-border pb-2">
-                <Link
+                <MobileNavLink
                   href={item.href || "#"}
                   className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 >
                   {item.name}
-                </Link>
+                </MobileNavLink>
               </div>
             )
           ))}
@@ -299,7 +300,7 @@ async function NavbarSSR() {
           {/* Contact Button in Mobile Menu */}
           <div className="pt-4">
             <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link href="/contact">Contact Us</Link>
+              <MobileNavLink href="/contact">Contact Us</MobileNavLink>
             </Button>
           </div>
         </div>

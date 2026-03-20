@@ -2,7 +2,6 @@ import { Code, Mail, Phone, MapPin, Github, Twitter, Linkedin, Instagram } from 
 import { NAME, EMAIL, PHONE, FRONTEND, SERVER_ENDPOINT, linkedinLink, twittweLink, instagramLink } from "@/lib/consts"
 import { fetchServices } from "@/lib/services"
 import { getData } from "@/lib/axios"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 async function FooterSSR() {
   const services = await fetchServices();
@@ -187,8 +186,6 @@ async function FooterSSR() {
                     </a>
                   ))}
                 </div>
-                <div className="border-l border-border h-10" />
-                <ThemeToggle />
               </div>
             </div>
 
@@ -196,19 +193,16 @@ async function FooterSSR() {
             {footerSections.map((section, index) => (
               <div key={index}>
                 <h3 className="font-semibold text-foreground mb-4">{section.title}</h3>
-                <nav aria-label={`${section.title} navigation`}>
-                  <ul className="space-y-3" role="list">
-                    {section.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <a
-                          href={link.href}
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          {link.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                <nav aria-label={`${section.title} navigation`} className="flex flex-col space-y-3">
+                  {section.links.map((link, linkIndex) => (
+                    <a
+                      key={linkIndex}
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
                 </nav>
               </div>
             ))}
