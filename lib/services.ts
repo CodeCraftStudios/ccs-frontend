@@ -45,7 +45,7 @@ export async function fetchServices(): Promise<Service[]> {
   try {
     console.log('Fetching services from:', `${SERVER_ENDPOINT}/api/service/list`);
     const response = await fetch(`${SERVER_ENDPOINT}/api/service/list`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
       },

@@ -12,6 +12,8 @@ import CSRFInitializer from "@/components/utils/CSRFInitializer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { NAME, FRONTEND, KEYWORDS } from "@/lib/consts"
 
+export const dynamic = "force-dynamic"
+
 const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",

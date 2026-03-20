@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 
 export const ClientsMarquee = async () => {
     let response: any = await getData("/api/portfolio/list")
-    let portfolio = response.data  // Extract the data array from the response
+    let portfolio = (response.data || []).filter((item: any) => !item.hide_logo)
 
     return (
         <div className="max-w-7xl mx-auto py-20">
