@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(ls vercel.json .env*)",
+      "Bash(ls:*)",
+      "Bash(node -e \"console.log\\(require\\(''framer-motion/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''geist/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''@vercel/analytics/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''@emotion/is-prop-valid/package.json''\\).version\\)\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
     ],
     "deny": [],
     "ask": []

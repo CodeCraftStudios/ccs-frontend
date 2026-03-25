@@ -1,7 +1,7 @@
 export const NAME = "CodeCraft Studios"
 export const EMAIL = "johnmolina@codecraftstudios.net"
 export const PHONE = "+1 (954) 398-0241"
-export const CALENDLY = "";
+export const CALENDLY = "https://calendly.com/codecraftstudiosofficial/30-minute-call";
 
 export const KEYWORDS = [
     "IT services Miami",

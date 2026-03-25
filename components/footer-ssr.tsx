@@ -53,7 +53,7 @@ async function FooterSSR() {
         { name: "About Us", href: "/about" },
         { name: "Portfolio", href: "/portfolio" },
         { name: "Blog", href: "/blogs" },
-        { name: "Contact", href: "/contact" },
+        { name: "Contact", href: "https://calendly.com/codecraftstudiosofficial/30-minute-call" },
       ],
     },
   ];

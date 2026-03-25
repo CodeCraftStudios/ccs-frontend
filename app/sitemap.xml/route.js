@@ -43,8 +43,6 @@ export async function GET() {
             "/blogs",
 			
 
-			"/contact",
-			
 		].map((path) => `
             <url>
                 <loc>${BASE_URL}${path}</loc>

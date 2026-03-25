@@ -240,7 +240,7 @@ async function NavbarSSR() {
             {/* Contact Button - Right Side */}
             <div className="hidden lg:flex items-center space-x-3">
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="/contact">Contact Us</Link>
+                <a href="https://calendly.com/codecraftstudiosofficial/30-minute-call" target="_blank" rel="noopener noreferrer">Contact Us</a>
               </Button>
             </div>
 
@@ -300,7 +300,7 @@ async function NavbarSSR() {
           {/* Contact Button in Mobile Menu */}
           <div className="pt-4">
             <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-              <MobileNavLink href="/contact">Contact Us</MobileNavLink>
+              <a href="https://calendly.com/codecraftstudiosofficial/30-minute-call" target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center">Contact Us</a>
             </Button>
           </div>
         </div>

@@ -11,7 +11,7 @@ import { NAME, FRONTEND, SERVER_ENDPOINT, EMAIL, PHONE } from "@/lib/consts"
 import { HeroCTAButtons, CTAButtons } from "./components/interactive-elements"
 
 
-const SLEEPLESS_CALENDLY = "/contact"
+const SLEEPLESS_CALENDLY = "https://calendly.com/codecraftstudiosofficial/30-minute-call"
 
 export async function generateMetadata(): Promise<Metadata> {
   try {
